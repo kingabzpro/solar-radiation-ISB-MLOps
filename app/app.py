@@ -1,5 +1,5 @@
 """
-Flask app to predict daily radiation from the time series of Solcast from Manila, Philippines.
+Flask app to predict daily radiation from the time series of Solcast from Islamabad, Pakistan.
 
 Input: 'month', 'day', 'Daily_Temp', 'Daily_Precip', 'Daily_Humidity', 'Daily_Pressure', 'Daily_WindDir', 'Daily_WindSpeed', 'Daily_DNI', 'Daily_GHI'
 Output: 'Daily_radiation'
@@ -12,9 +12,11 @@ import joblib
 
 # instantiate flask object
 app = Flask(__name__)
+@app.route('/', methods='GET')
+def index():
+    return 'welcome to the solar radiation prediction API'
 
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/solar', methods=['GET', 'POST'])
 def get_input():
     """
     A Flask script to interface the ML model and the user request.
