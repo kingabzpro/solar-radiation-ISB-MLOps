@@ -14,12 +14,7 @@ import joblib
 app = Flask(__name__)
 
 
-@app.route("/", methods="GET")
-def index():
-    return jsonify({"message": "welcome to the solar radiation prediction API"})
-
-
-@app.route("/solar", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def get_input():
     """
     A Flask script to interface the ML model and the user request.
@@ -34,7 +29,7 @@ def get_input():
     data = np.array(input_data).reshape(1, 10)
 
     # load the model from disk
-    loaded_model = joblib.load("model_gbr.pkl")
+    loaded_model = joblib.load("app/model_gbr.pkl")
 
     # generate prediction
     solar_irradiation = loaded_model.predict(data)[0]
